@@ -1,6 +1,6 @@
 <h4>Formularios <small> Template </small></h4>
 <hr>
-<form autocomplete="off" (ngSubmit)="onSubmit()" #form="ngForm">
+<form autocomplete="off" (ngSubmit)="onSubmit(form)" #form="ngForm">
 
   <div>
 
@@ -10,7 +10,7 @@
 
         <input class="form-control"
                name="nombre"
-               ngModel
+               [ngModel]="usuario.nombre"
                type="text"
                placeholder="Nombre"
                required
