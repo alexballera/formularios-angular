@@ -12,7 +12,8 @@ export class TemplateComponent implements OnInit {
     nombre: 'Alexander',
     apellido: 'Ballera',
     correo: 'alexballera@gmail.com',
-    pais: ''
+    pais: 'CRI',
+    genero: 'M'
   };
 
   paises: any[] = [];
@@ -27,13 +28,12 @@ export class TemplateComponent implements OnInit {
       this.paises.unshift({
         nombre: 'Seleccione País',
         codigo: ''
-      })
+      });
     });
     console.log(this.paises);
   }
 
   onSubmit(form: NgForm) {
-    console.log(form);
 
     if (form.invalid) {
       Object.values(form.controls).forEach(control => {
