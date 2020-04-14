@@ -8,9 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateComponent implements OnInit {
   usuario = {
-    nombre: '',
-    apellido: '',
-    correo: ''
+    nombre: 'Alexander',
+    apellido: 'Ballera',
+    correo: 'alexballera@gmail.com'
   };
 
   constructor() { }
@@ -20,6 +20,12 @@ export class TemplateComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log(form);
+
+    if (form.invalid) {
+      Object.values(form.controls).forEach(control => {
+        control.markAllAsTouched();
+      });
+    }
     console.log(form.value);
   }
 
