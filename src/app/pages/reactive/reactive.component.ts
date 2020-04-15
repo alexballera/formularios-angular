@@ -27,6 +27,23 @@ export class ReactiveComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form);
+    if (this.form.invalid) {
+      Object.values(this.form.controls).forEach(control => {
+        control.markAllAsTouched();
+      });
+    }
+  }
+
+  get nombreNoValido() {
+    return this.form.get('nombre').invalid && this.form.get('nombre').touched;
+  }
+
+  get apellidoNoValido() {
+    return this.form.get('apellido').invalid && this.form.get('apellido').touched;
+  }
+
+  get correoNoValido() {
+    return this.form.get('correo').invalid && this.form.get('correo').touched;
   }
 
 }
