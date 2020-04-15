@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReactiveComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.crearFormulario();
+  }
 
   ngOnInit() {
+  }
+
+  crearFormulario() {
+    this.form = this.fb.group({
+      nombre  : ['Alexander'],
+      apellido: ['Ballera'],
+      correo  : ['alexballera@gmail.com'],
+    });
+  }
+
+  onSubmit() {
+    console.log(this.form);
   }
 
 }
