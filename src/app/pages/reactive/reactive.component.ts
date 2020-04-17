@@ -25,13 +25,15 @@ export class ReactiveComponent implements OnInit {
       nombre  : ['', [Validators.required, Validators.minLength(5)]],
       apellido: ['', [Validators.required, Validators.minLength(5), this.validadores.noHerrera]],
       correo  : ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      pass1   : ['', [Validators.required, Validators.minLength(5)]],
+      pass2   : ['', [Validators.required, Validators.minLength(5)]],
       direccion: this.fb.group({
         distrito: ['', Validators.required],
         ciudad: ['', Validators.required],
       }),
-      pasatiempos: this.fb.array([
-        [], [], []
-      ])
+      pasatiempos: this.fb.array([])
+    }, {
+      validators: this.validadores.passwordsIguales('pass1', 'pass2')
     });
   }
 
@@ -95,6 +97,16 @@ export class ReactiveComponent implements OnInit {
 
   get ciudadNoValido() {
     return this.form.get('direccion.ciudad').invalid && this.form.get('direccion.ciudad').touched;
+  }
+
+  get pass1NoValido() {
+    return this.form.get('pass1').invalid && this.form.get('pass1').touched;
+  }
+
+  get pass2NoValido() {
+    const pass1 = this.form.get('pass1').value;
+    const pass2 = this.form.get('pass2').value;
+    return (pass1 === pass2) ? false : true;
   }
 
 }
