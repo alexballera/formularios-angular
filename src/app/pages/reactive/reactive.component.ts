@@ -46,6 +46,14 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  agregarPasatiempo() {
+    this.pasatiempos.push(this.fb.control('', Validators.required));
+  }
+
+  borrarPasatiempo(i: number) {
+    this.pasatiempos.removeAt(i);
+  }
+
   onSubmit() {
     console.log(this.form);
     if (this.form.invalid) {
